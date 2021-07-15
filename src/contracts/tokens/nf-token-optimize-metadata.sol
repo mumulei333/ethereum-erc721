@@ -3,6 +3,7 @@ pragma solidity 0.8.0;
 
 import "./nf-token.sol";
 import "./erc721-metadata.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 /**
  * @dev Optional metadata implementation for ERC-721 non-fungible token standard.
@@ -11,6 +12,7 @@ contract NFTokenOptimizeMetadata is
   NFToken,
   ERC721Metadata
 {
+    using Strings for uint256;
 
     /**
     * @dev A descriptive name for a collection of NFTs.
