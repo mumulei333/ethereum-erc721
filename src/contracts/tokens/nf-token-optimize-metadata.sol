@@ -58,7 +58,7 @@ contract NFTokenOptimizeMetadata is
         return baseURI;
     }
     
-    function changeBaseURI(string memory newBaseURI) external {
+    function _changeBaseURI(string memory newBaseURI) internal virtual {
         baseURI = string(abi.encodePacked(newBaseURI, nftSymbol, "/"));
     }
     
