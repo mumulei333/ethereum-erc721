@@ -7,9 +7,9 @@ import "https://github.com/mumulei333/ethereum-erc721/src/contracts/tokens/erc72
 import "https://github.com/mumulei333/ethereum-erc721/src/contracts/utils/Strings.sol";
 
 /**
- * @dev Optional metadata implementation for ERC-721 non-fungible token standard.
+ * @dev Optional metadata enumerable implementation for ERC-721 non-fungible token standard.
  */
-contract NFTokenOptimizeMetadata is
+contract NFTokenMetadataEnumerable is
   NFToken,
   ERC721Metadata,
   ERC721Enumerable
