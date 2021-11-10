@@ -15,6 +15,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 contract MatafyERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable {
     using Address for address;
     using Strings for uint256;
+    
 
     // Token name
     string private _name;
@@ -23,6 +24,8 @@ contract MatafyERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enume
     string private _symbol;
     
     string private _baseURI;
+    
+    string private _baseURISuffix = '.json';
     
 
     // Mapping from token ID to owner address
@@ -242,7 +245,7 @@ contract MatafyERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enume
         // require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
 
         string memory baseURI = _baseURI;
-        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : "";
+        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString(), _baseURISuffix)) : "";
     }
 
     /**
@@ -252,6 +255,10 @@ contract MatafyERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enume
      */
     function _changeBaseURI(string memory newBaseURI) internal virtual {
         _baseURI = string(abi.encodePacked(newBaseURI, _symbol, "/"));
+    }
+    
+    function _changeBaseURISuffix(string memory newBaseURISuffix) internal virtual {
+        _baseURISuffix = newBaseURISuffix;
     }
 
     /**
@@ -415,6 +422,7 @@ contract MatafyERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enume
             "ERC721: transfer to non ERC721Receiver implementer"
         );
     }
+    
 
     /**
      * @dev Mints `tokenId` and transfers it to `to`.
