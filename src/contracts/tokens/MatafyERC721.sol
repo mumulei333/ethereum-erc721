@@ -7,7 +7,6 @@ import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
@@ -16,7 +15,6 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 contract MatafyERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable {
     using Address for address;
     using Strings for uint256;
-    using Counters for Counters.Counter;
     
 
     // Token name
@@ -29,8 +27,6 @@ contract MatafyERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enume
     
     string private _baseURISuffix = '.json';
     
-    
-    Counters.Counter private beautifulDiamondIdCounter;
 
     // Mapping from token ID to owner address
     mapping(uint256 => address) private _owners;
@@ -66,12 +62,6 @@ contract MatafyERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enume
         _name = name_;
         _symbol = symbol_;
         _baseURI = string(abi.encodePacked(baseURI_, symbol_, "/"));
-        
-        for (uint i = 1; i <= 10; i++) {
-            beautifulDiamondIdCounter.increment();
-            _mint(msg.sender, beautifulDiamondIdCounter.current());
-        }
-        
     }
 
 
